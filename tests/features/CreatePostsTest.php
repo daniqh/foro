@@ -33,12 +33,9 @@ class CreatePostsTest extends FeatureTestCase
 
     function test_create_post_form_validation()
     {
-        $this->actingAS($user = $this->defaultUser())
-            ->visit(route('posts.create'))
-            ->press('Submit')
-            ->seePageIs(route('posts.create'))
-            ->seeInElement('#field_title.has-error .help-block','The title field is required')
-            ->seeInElement('#field_content.has-error .help-block','The content field is required');
-
+        $this->actingAS($user = $this->defaultUser())->visit(route('posts.create'))->press('Submit')->seePageIs(route('posts.create'))->SeeErrors([
+                'title' => 'The title field is required',
+                'content' => 'The content field is required',
+            ]);
     }
 }
