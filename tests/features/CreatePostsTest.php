@@ -8,10 +8,13 @@ class CreatePostsTest extends FeatureTestCase
         $title = 'This is a Question';
         $content = 'This is the content';
 
-        $this->actingAS($user = $this->defaultUser());
+        $this->actingAs($user = $this->defaultUser());
 
         // When
-        $this->visit(route('posts.create'))->type($title, 'title')->type($content, 'content')->press('Submit');
+        $this->visit(route('posts.create'))
+            ->type($title, 'title')
+            ->type($content, 'content')
+            ->press('Submit');
 
         // Then
         $this->seeInDatabase('posts', [
