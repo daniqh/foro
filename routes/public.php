@@ -12,7 +12,7 @@ Route::get('/home', 'HomeController@index');
 
 // Lanza el error
 
-Route::get('posts/{post}', [
+Route::get('posts/{post}-{slug}', [
     'as' => 'posts.show',
     'uses' => 'PostController@show',
-])->where('post','[0-9]');
+])->where('post','\d+');
